@@ -5,6 +5,22 @@ Class Interpolate:
             return (self.Newton(L,M))
         else:
             return (self.Lagrange(L,M))
+    def plot(self,coeffs,L,M):
+        coeffs.reverse()
+        def f(x):
+            order,sum=len(coeffs)-1,0
+            for i in range(order+1):
+                sum+=(coeffs[i]*(x**(order-i)))
+            return sum
+        n=int((max(L)-min(L)+2)/0.001)
+        x_values=[min(L)-1]
+        for i in range(1,n):
+            x_values.append(float(str(x_values[0]+(0.001*i))[:5]))
+        x_values.append(max(A)+1)
+        y_values=[f(x) for x in x_values]
+        plt.plot(x_values,y_values,A,B,'r o')
+        plt.show()
+    
 
     def Lagrange(self,L,M):                                                
        
@@ -38,7 +54,9 @@ Class Interpolate:
                                                                             
             for j in range(1,i):
                 prod=P.polymul(prod,(-1*L[j],1))                              
-            result=P.polyadd(result,array(prod)*mat[0][i])                  
+            result=P.polyadd(result,array(prod)*mat[0][i])
+        self.plot(list9result),L,M)
+        print("NOTE: coefficients of the terms in the result start from constant term and go up to the highest order term")
         return (list(result))                                               
 
 apx=Interpolate()                                                          
