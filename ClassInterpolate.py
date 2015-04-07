@@ -16,9 +16,9 @@ Class Interpolate:
         x_values=[min(L)-1]
         for i in range(1,n):
             x_values.append(float(str(x_values[0]+(0.001*i))[:5]))
-        x_values.append(max(A)+1)
+        x_values.append(max(L)+1)
         y_values=[f(x) for x in x_values]
-        plt.plot(x_values,y_values,A,B,'r o')
+        plt.plot(x_values,y_values,L,M,'r o')
         plt.show()
     
 
